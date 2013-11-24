@@ -101,15 +101,20 @@ def old_tweet_bot(db):
 
     return msg_close(out)
 
-def tweet_bot(db, datadir='.'):
+# def tweet_bot(db, datadir='.'):
+def tweet_bot(datadir='.'):
     out = []
 
     msg(out, 'Fetching data...')
-    data = Data(db)
-    tweet_user_ids, tweet_ids = data.used_tweets()
-    used_flickr_ids = data.used_photos(FLICKR_PHOTO)
-    used_insta_ids = data.used_photos(INSTAGRAM_PHOTO)
+    # data = Data(db)
+    # tweet_user_ids, tweet_ids = data.used_tweets()
+    # used_flickr_ids = data.used_photos(FLICKR_PHOTO)
+    # used_insta_ids = data.used_photos(INSTAGRAM_PHOTO)
     
+    tweet_user_ids = []
+    used_flickr_ids = []
+    used_insta_ids = []
+
     loc = location(os.path.join(datadir, LOCS_FILE), os.path.join(datadir, LOC_POPS_FILE))
     while not loc:
         loc = location(os.path.join(datadir, LOCS_FILE), os.path.join(datadir, LOC_POPS_FILE))
@@ -146,20 +151,21 @@ def tweet_bot(db, datadir='.'):
     sync_followers_and_followings(twitter_handle)
     post_status(twitter_handle, text, tweet.index)
     
-    # updating data
-    data.add_tweet(tweet, text)
-    if INSTAGRAM_PHOTO:
-        data.add_photo(INSTAGRAM_PHOTO, photo)
-    else:
-        data.add_photo(FLICKR_PHOTO, photo)
+    # # updating data
+    # data.add_tweet(tweet, text)
+    # if INSTAGRAM_PHOTO:
+    #     data.add_photo(INSTAGRAM_PHOTO, photo)
+    # else:
+    #     data.add_photo(FLICKR_PHOTO, photo)
 
     return msg_close(out)
 
 def main():
-    db = Engine()
+    # db = Engine()
     CURDIR = os.path.dirname(os.path.abspath(__file__))
     while True:
-        print tweet_bot(db, CURDIR)
+        print tweet_bot(CURDIR)
+        # print tweet_bot(db, CURDIR)
         time.sleep(TWEET_EVERY_N_SECONDS)
 
 if __name__ == '__main__':
