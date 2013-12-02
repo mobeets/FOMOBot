@@ -36,4 +36,4 @@ posts = [
     "{username} I was just looking at photos of {loc_name} and found this one: {url}",
 ]
 def get_post(username, loc_name, url):
-    return choice(posts).format(username='@' + username, loc_name=loc_name, url=url)
+    return choice(posts).format(username='.' + username, loc_name=loc_name, url=url)
