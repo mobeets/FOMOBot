@@ -13,7 +13,7 @@ from bin.twitter_streamer import TWEET_URL_LENGTH, TWEET_LENGTH, user_handle, ne
 LOCS_FILE = 'bin/locs.csv'
 LOC_POPS_FILE = 'bin/loc_pops.csv'
 
-TWEET_EVERY_N_SECONDS = 60*10 # e.g. 60*10 = ten minutes between each tweet
+TWEET_EVERY_N_SECONDS = 60*15 # e.g. 60*10 = ten minutes between each tweet
 
 def get_photo(lat, lon, used_flickr_ids, used_insta_ids):
     def insta():
